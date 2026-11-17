@@ -47,6 +47,10 @@ Project_NLP/
    ```bash
    pip install -r requirements.txt
    ```
+   For the CLI's local microphone input and audio playback, install the desktop extras too:
+   ```bash
+   pip install -r requirements-desktop.txt
+   ```
 
 ## Usage
 
@@ -60,6 +64,16 @@ python main.py
 streamlit run app.py
 ```
 
+## Deploy on Streamlit Community Cloud
+
+GitHub Pages only serves static files and cannot run this Python/Streamlit app. To publish the interactive app:
+
+1. Sign in to [Streamlit Community Cloud](https://share.streamlit.io/) with GitHub and authorize access to this repository.
+2. Select **Create app**, choose `japneet079/text-speech-translator` and the `main` branch, and set the main file path to `app.py`.
+3. Deploy. Community Cloud installs the web dependencies from `requirements.txt`; the local microphone and audio-device packages in `requirements-desktop.txt` are not needed by the hosted app.
+
+The app's speech recognition, translation, and speech synthesis features use external Google services and require network access. No repository secrets are needed for the current configuration. After deployment, Community Cloud provides the public app URL; future pushes to the selected branch are deployed automatically.
+
 ## How It Works
 1. User provides input as typed text or spoken audio
 2. The source language is automatically detected
@@ -72,4 +86,3 @@ streamlit run app.py
 
 ## Future Improvements
 - Add an offline NLP translation model (e.g., Hugging Face MarianMT) as an alternative engine
-- Deploy the web app publicly (Streamlit Community Cloud)

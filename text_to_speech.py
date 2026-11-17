@@ -3,7 +3,6 @@
 import os
 from pathlib import Path
 from gtts import gTTS
-import pygame
 
 OUTPUT_FOLDER = Path(__file__).resolve().parent / "output"
 
@@ -22,6 +21,8 @@ def text_to_speech(text: str, language: str, play_audio: bool = True) -> str:
     gTTS(text=cleaned_text, lang=language).save(str(audio_path))
 
     if play_audio:
+        import pygame
+
         pygame.mixer.init()
         pygame.mixer.music.load(str(audio_path))
         pygame.mixer.music.play()
